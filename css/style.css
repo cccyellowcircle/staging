@@ -872,6 +872,8 @@ td:nth-child(5){
   }
   .table-filters{
     align-items: flex-start;
+    font-size: .8em;
+    line-height: 1.5em;
   }
 
   .body-item{
