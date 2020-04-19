@@ -863,8 +863,12 @@ td:nth-child(5){
 
 @media (max-width: 767px) {
   .table-filters input {
-    width: 7.05em;
+    width: 6.05em;
     padding: 0.2em 0.5em;
+  }
+
+  #filter-category{
+    max-width:50px;
   }
   .table-filters{
     align-items: flex-start;
