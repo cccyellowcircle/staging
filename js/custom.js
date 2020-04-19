@@ -20,6 +20,7 @@ function showInfo(data, tabletop) {
         data[i].engname + 
       '</td>' + 
       '<td class="body-item">' + data[i].category + '</td>' + 
+      '<td class="body-item">' + data[i].workshop + '</td>' + 
       '<td class="body-item">';
     if("" != data[i].fblink) {
       text += '<a class="social-link" href="' + data[i].fblink + '" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
@@ -31,7 +32,6 @@ function showInfo(data, tabletop) {
       text += '<a class="social-link" href="' + data[i].weblink + '" target="_blank"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>';
     }
     text += '</td>';
-    
     /*if("" != data[i].reasonlink) {
       text += '<td class="body-item">' + '<a href="' + data[i].reasonlink + '">了解更多</a></td>';
     } else {
