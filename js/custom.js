@@ -280,7 +280,6 @@ window.addEventListener('DOMContentLoaded', init);
     }
   };
 })(jQuery);
-
 //Back to Top
 //Get the button:
 mybutton = document.getElementById("back-to-top");

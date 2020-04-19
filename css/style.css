@@ -725,6 +725,11 @@ img {
   display: none;
 }
 
+#filter-tick{
+  margin-right: 5px;
+  width: 15px;
+}
+
 .table-filters input{
   border: 1px solid #e8e8e8;
   display: inline;
@@ -736,7 +741,6 @@ img {
   font-family: 'Rubik', sans-serif;
   font-size: 1rem;
   line-height: 1.43;
-  min-height: 3.5em;
   padding: 1.07em 1em;
 }
 .table-filters input:focus {
@@ -745,12 +749,17 @@ img {
   outline: 0;
 }
 
-.category-filter-wrap{
-  text-align: right;
-}
-
 .brand-filter-wrap{
   text-align: left;
+}
+
+.category-filter-wrap{
+  text-align: left;
+}
+
+.workshop-filter-wrap{
+  text-align: left;
+  width: 100px;
 }
 
 #mylist{
@@ -854,9 +863,8 @@ td:nth-child(5){
 
 @media (max-width: 767px) {
   .table-filters input {
-    width: 9.05em;
-    min-height: 2.5em;
-    padding: .5em 1em;
+    width: 7.05em;
+    padding: 0.2em 0.5em;
   }
   .table-filters{
     align-items: flex-start;
@@ -886,7 +894,7 @@ td:nth-child(5){
   width: 15%;
   }
   td:nth-child(3){  
-  width: 10%;
+  width: 30%;
   }
   td:nth-child(4){  
   width: 15%;
