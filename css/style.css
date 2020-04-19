@@ -868,7 +868,7 @@ td:nth-child(5){
   }
 
   #filter-category{
-    max-width:50px;
+    max-width:60px;
   }
   .table-filters{
     align-items: flex-start;
