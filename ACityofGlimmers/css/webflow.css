@@ -57,7 +57,6 @@ body {
 img {
   max-width: 100%;
   vertical-align: middle;
-  display: inline-block;
 }
 html.w-mod-touch * {
   background-attachment: scroll !important;

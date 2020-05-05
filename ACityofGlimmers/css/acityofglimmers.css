@@ -682,6 +682,10 @@ body {
     margin-bottom: 5px;
     letter-spacing: 1px;
   }
+  .title-img-wrap {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
   .hero-wrap {
     height: 100vh;
   }
