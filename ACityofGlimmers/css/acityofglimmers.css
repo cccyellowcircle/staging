@@ -685,6 +685,7 @@ body {
   .title-img-wrap {
     margin-right: 5%;
     margin-left: 5%;
+    display: block;
   }
   .hero-wrap {
     height: 100vh;
