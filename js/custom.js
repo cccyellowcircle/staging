@@ -2,47 +2,76 @@
 
 var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1L6s0ZT079sjX6UaH3N3dpxN_odMY9JOh9zGigI-D7mE/pubhtml';
 
-  function init() {
-    Tabletop.init( { key: publicSpreadsheetUrl,
-                     callback: showInfo,
-                     simpleSheet: true } )
-  }
+function init() {
+  Tabletop.init({
+    key: publicSpreadsheetUrl,
+    callback: showInfo,
+    simpleSheet: true
+  });
+}
 
 function showInfo(data, tabletop) {
-  /*console.log(data);*/
-  for (var i = 0; i < data.length; i++) {
-    var text =
-      '<tr>' + 
-      '<td class="body-item">' +
-        data[i].chiname + 
-      '</td>' + 
-      '<td class="body-item-hidden">' +
-        data[i].engname + 
-      '</td>' + 
-      '<td class="body-item">' + data[i].category + '</td>' + 
-      '<td class="body-item">' + data[i].workshop + '</td>' + 
-      '<td class="body-item">';
-    if("" != data[i].fblink) {
-      text += '<a class="social-link" href="' + data[i].fblink + '" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
+  // console.log(data);
+  for (var i = 0; i < data.length; i++)
+  {
+    var text = ''
+      , name = data[i].chiname
+      , bg_title = encodeURI(data[i].engname)
+      , category = data[i].category.replace(/\d{2}\.(.*)/, '$1')
+      , fblink = data[i].fblink
+      , iglink = data[i].iglink
+      , weblink = data[i].weblink
+    ;
+
+    text += '<a href="#" class="cards-wrapper w-inline-block"' +
+              ' data-name="' + name + '" ' +
+              ' data-bg_title="' + bg_title + '" ' +
+              ' data-fblink="' + fblink + '" ' +
+              ' data-iglink="' + iglink + '" ' +
+              ' data-weblink="' + weblink + '" ' +
+              ' >' +
+              '<div class="brand-img-wrap" style="background-image: url(http://placehold.it/1024x1024/e0e0e0/000000?text='+bg_title+');">' +
+                '<div class="tag">' +
+                  '<div>'+category+'</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="brand-detail-wrapper">' +
+                '<div>'+name+'</div>' +
+              '</div>' +
+            '</a>';
+
+    $('.brands-wrapper').append(text);
+  }
+
+  $('div.brands-wrapper > a.cards-wrapper').on('click', function(){
+    console.log($(this));
+    var html = ""
+      , info = $(this)[0]
+      , name = info.dataset.name
+      , bg_title = info.dataset.bg_title
+      , fblink = info.dataset.fblink
+      , iglink = info.dataset.iglink
+      , weblink = info.dataset.weblink
+    ;
+
+    html += '<h1>' + name + '</h1>';
+    html += '<img src="http://placehold.it/1024x1024/e0e0e0/000000?text='+bg_title+'">';
+    if("" != fblink) {
+      html += '<a class="social-link" href="' + fblink + '" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
     }
-    if("" != data[i].iglink) {
-      text += '<a class="social-link" href="' + data[i].iglink + '" target="_blank"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>';
+    if("" != iglink) {
+      html += '<a class="social-link" href="' + iglink + '" target="_blank"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>';
     }
-    if("" != data[i].weblink) {
-      text += '<a class="social-link" href="' + data[i].weblink + '" target="_blank"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>';
+    if("" != weblink) {
+      html += '<a class="social-link" href="' + weblink + '" target="_blank"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>';
     }
-    text += '</td>';
-    /*if("" != data[i].reasonlink) {
-      text += '<td class="body-item">' + '<a href="' + data[i].reasonlink + '">了解更多</a></td>';
-    } else {
-      text += '<td class="body-item">No Link</td>';
-    }*/
-    text += '</tr>';
-           
-    $('.brandTable').append(text);
-    }
+
+
+    modal.setContent(html);
+    modal.open();
+  });
 }
-window.addEventListener('DOMContentLoaded', init);
+// window.addEventListener('DOMContentLoaded', init);
 
 
 /* Filtable 0.11 - jQuery table filtering plugin */
@@ -280,24 +309,51 @@ window.addEventListener('DOMContentLoaded', init);
     }
   };
 })(jQuery);
+
+// 20200722 ricky - all tingle for lightbox
+var modal = new tingle.modal({
+    footer: true,
+    stickyFooter: false,
+    closeMethods: ['overlay', 'button', 'escape'],
+    closeLabel: "Close",
+    cssClass: ['custom-class-1', 'custom-class-2'],
+    onOpen: function() {
+        console.log('modal open');
+    },
+    onClose: function() {
+        console.log('modal closed');
+    },
+    beforeClose: function() {
+        // here's goes some logic
+        // e.g. save content before closing the modal
+        return true; // close the modal
+        return false; // nothing happens
+    }
+});
+// 20200722 ricky - End
+
 //Back to Top
 //Get the button:
-mybutton = document.getElementById("back-to-top");
+// mybutton = document.getElementById("back-to-top");
 
-  jQuery(document).ready(function() {
-    var offset = 220;
-    var duration = 500;
-    jQuery(window).scroll(function() {
-      if (jQuery(this).scrollTop() > offset) {
-        jQuery('#back-to-top').fadeIn(duration);
-      } else {
-        jQuery('#back-to-top').fadeOut(duration);
-      }
-    });
- 
-    jQuery('#back-to-top').click(function(event) {
-      event.preventDefault();
-      jQuery('html, body').animate({scrollTop: 0}, duration);
-      return false;
-    })
+jQuery(document).ready(function() {
+  init();
+
+  var offset = 220;
+  var duration = 500;
+  jQuery(window).scroll(function() {
+    if (jQuery(this).scrollTop() > offset) {
+      jQuery('#back-to-top').fadeIn(duration);
+    } else {
+      jQuery('#back-to-top').fadeOut(duration);
+    }
   });
+
+  jQuery('#back-to-top').click(function(event) {
+    event.preventDefault();
+    jQuery('html, body').animate({scrollTop: 0}, duration);
+    return false;
+  })
+
+
+});
