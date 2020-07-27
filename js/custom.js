@@ -17,6 +17,7 @@ function showInfo(data, tabletop) {
     var text = ''
       , name = data[i].chiname
       , bg_title = encodeURI(data[i].engname)
+      , descript = data[i].descript
       , category = data[i].category.replace(/\d{2}\.(.*)/, '$1')
       , fblink = data[i].fblink
       , iglink = data[i].iglink
@@ -49,13 +50,14 @@ function showInfo(data, tabletop) {
       , info = $(this)[0]
       , name = info.dataset.name
       , bg_title = info.dataset.bg_title
+      , descript = info.dataset.descript
       , fblink = info.dataset.fblink
       , iglink = info.dataset.iglink
       , weblink = info.dataset.weblink
     ;
 
-    html += '<h1>' + name + '</h1>';
-    html += '<img src="http://placehold.it/1024x1024/e0e0e0/000000?text='+bg_title+'">';
+    html += '<div class="brand-img" style="background-image: url(http://placehold.it/1024x1024/e0e0e0/000000?text='+bg_title+');"></div>';
+    html += '<div class="brand-detail">' + '<h1 class="brand-name">' + name + '</h1>' + '<p>' + descript + '</p>';
     if("" != fblink) {
       html += '<a class="social-link" href="' + fblink + '" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
     }
@@ -65,6 +67,7 @@ function showInfo(data, tabletop) {
     if("" != weblink) {
       html += '<a class="social-link" href="' + weblink + '" target="_blank"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>';
     }
+    html += '</div>';
 
 
     modal.setContent(html);
