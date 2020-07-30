@@ -665,6 +665,7 @@ img {
   display: -ms-flexbox;
   display: flex;
   overflow: scroll;
+  min-width: 70VW;
   height: 80vh;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -675,10 +676,10 @@ img {
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-align: stretch;
-  -webkit-align-items: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
   border-radius: 6px;
   background-color: #eec500;
 }
