@@ -24,7 +24,8 @@ function showInfo(data, tabletop) {
     ;
     // console this data for debug use
     // console.log(data[i]);
-    var name = data[i].chiname
+    var name_zh = data[i].chiname
+      , name_en = data[i].engname
       , portrait = data[i].portrait || 'default.jpg'
       , category_full = data[i].category.replace(/\d{2}\.(.*)/, '$1')
       , category = (10 < category_full.length)
@@ -36,7 +37,8 @@ function showInfo(data, tabletop) {
     text += '<a href="#" class="cards-wrapper w-inline-block"' +
               ' data-artist_id="' + artist_id + '" ' +
               // if info are need to use in filter, store info as data-* here
-              ' data-name="' + name + '" ' +
+              ' data-name_zh="' + name_zh + '" ' +
+              ' data-name_en="' + name_en + '" ' +
               ' data-category="' + category_full + '" ' +
               ' data-workshop="' + workshop + '" ' +
               ' >' +
@@ -46,7 +48,7 @@ function showInfo(data, tabletop) {
                 '</div>' +
               '</div>' +
               '<div class="brand-detail-wrapper">' +
-                '<div>'+name+'</div>' +
+                '<div>'+name_zh+'</div>' +
               '</div>' +
             '</a>';
 
