@@ -29,7 +29,7 @@ function updateFilter()
 
     if("" == name) {
       // pass
-    } else if(-1 < card.dataset.name.search(name)) {
+    } else if(-1 < card.dataset.name.toLowerCase().search(name.toLowerCase())) {
       is_show &= true;
     } else {
       is_show &= false;
