@@ -68,6 +68,7 @@
 	margin-bottom: auto;
 	width: 80%;
 	height: auto;
+    overflow: scroll;
 	border-radius: 4px;
 	background: #fff;
 	opacity: 1;
@@ -194,6 +195,7 @@
 }
 
 .brand-img{
+	overflow: hidden;
 	width: 50%;
     height: 400px;
     margin-right: 20px;
@@ -239,7 +241,7 @@
 	.tingle-modal-box {
 		width: auto;
 		border-radius: 0;
-		height: auto;
+		height: 100%;
 	}
 	.tingle-modal-box__content {
 		overflow-y: scroll;
