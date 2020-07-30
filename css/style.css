@@ -683,6 +683,17 @@ img {
   background-color: #eec500;
 }
 
+/* fix with and height after filter */
+.table-wrapper
+{
+  width: 100%;
+}
+.table-wrapper .brands-wrapper
+{
+  height: initial;
+}
+
+
 @media screen and (max-width: 991px) {
   .nav {
     padding: 10px 30px;

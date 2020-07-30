@@ -21,13 +21,21 @@ function showInfo(data, tabletop) {
     // everything for listing page are update here
     var text = ''
       , artist_id = i
-      , name = data[i].chiname
+    ;
+    // console this data for debug use
+    // console.log(data[i]);
+    var name = data[i].chiname
       , portrait = data[i].portrait || 'default.jpg'
       , category = data[i].category.replace(/\d{2}\.(.*)/, '$1')
+      , workshop = data[i].workshop
     ;
 
     text += '<a href="#" class="cards-wrapper w-inline-block"' +
               ' data-artist_id="' + artist_id + '" ' +
+              // if info are need to use in filter, store info as data-* here
+              ' data-name="' + name + '" ' +
+              ' data-category="' + category + '" ' +
+              ' data-workshop="' + workshop + '" ' +
               ' >' +
               '<div class="brand-img-wrap" style="background-image: url(./images/portrait/'+portrait+');">' +
                 '<div class="tag">' +
@@ -43,13 +51,17 @@ function showInfo(data, tabletop) {
   }
 
   $('div.brands-wrapper > a.cards-wrapper').on('click', function(){
-    console.log($(this));
+    // console.log($(this));
     var html = ""
       , artist_id = $(this)[0].dataset.artist_id
       // load artist from artists array
-      // everything in lightbox are update here
-      , artist = artists[artist_id]
-      , name = artist.chiname
+      , artist = artists[artist_id];
+    // console artist for debug use
+    // console.log(artist);
+
+    // everything in lightbox are update here
+    var
+      name = artist.chiname
       , portrait = artist.portrait || 'default.jpg'
       // replace nextline to <br />
       , description = artist.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
@@ -57,9 +69,8 @@ function showInfo(data, tabletop) {
       , iglink = artist.iglink
       , weblink = artist.weblink
     ;
-    // console artist for debug use
-    // console.log(artist);
 
+    // build the lightbox html
     html += '<div class="brand-img"><img src="./images/portrait/'+portrait+'"></div>';
     html += '<div class="brand-detail">';
       html += '<h1 class="brand-name">' + name + '</h1>';
