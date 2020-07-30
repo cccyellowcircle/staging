@@ -875,6 +875,9 @@ img {
   .header.p {
     line-height: 62px;
   }
+  .logo-text {
+    margin-left: 0px;
+  }
   .join-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -911,13 +914,19 @@ img {
     height: 110px;
   }
   .cards-wrapper {
-    width: 45%;
-    margin: 1%;
-    padding: 5px;
+    width: 32%;
+    margin: 2px;
+    padding: 3px;
   }
   .brands-container {
     padding-right: 3%;
     padding-left: 3%;
+  }
+  .brand-img{
+  height:300px;
+  }
+  .tingle-modal-box{
+    height: 100%;
   }
 }
 

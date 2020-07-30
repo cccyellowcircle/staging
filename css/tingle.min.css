@@ -67,7 +67,7 @@
 	margin-top: auto;
 	margin-bottom: auto;
 	width: 80%;
-	height: 90vh;
+	height: auto;
 	border-radius: 4px;
 	background: #fff;
 	opacity: 1;
@@ -229,7 +229,7 @@
 	}
 }
 
-@media (max-width :540px) {
+@media (max-width :479px) {
 	.tingle-modal {
 		top: 0;
 		display: block;
@@ -238,7 +238,8 @@
 	}
 	.tingle-modal-box {
 		width: auto;
-		border-radius: 0
+		border-radius: 0;
+		height: auto;
 	}
 	.tingle-modal-box__content {
 		overflow-y: scroll;
