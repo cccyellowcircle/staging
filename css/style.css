@@ -665,6 +665,7 @@ img {
   display: -ms-flexbox;
   display: flex;
   overflow: scroll;
+  min-width: 70VW;
   height: 80vh;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -675,24 +676,13 @@ img {
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-align: stretch;
-  -webkit-align-items: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
   border-radius: 6px;
   background-color: #eec500;
 }
-
-/* fix with and height after filter */
-.table-wrapper
-{
-  width: 100%;
-}
-.table-wrapper .brands-wrapper
-{
-  height: initial;
-}
-
 
 @media screen and (max-width: 991px) {
   .nav {
@@ -936,9 +926,6 @@ img {
   .brand-img{
   height:300px;
   }
-  .tingle-modal-box{
-    height: 100%;
-  }
 }
 
 /*Custom CSS*/
@@ -1050,31 +1037,31 @@ table th{
   color: #FFFFFF;
 }
 
-td:first-child, .table-heads th:first-child{
+td:first-child, .table-heads th:first-child{  
   width: 50%;
   white-space: pre-wrap;
-  text-align: left;
+  text-align: left; 
   }
-
-.table-heads th:nth-child(2){
+  
+.table-heads th:nth-child(2){  
   width: 20%;
   }
 
-.table-heads th:nth-child(3){
+.table-heads th:nth-child(3){  
   width: 15%;
 }
 
-.table-heads th:nth-child(4){
+.table-heads th:nth-child(4){  
   width: 15%;
 }
 
-td:nth-child(3){
+td:nth-child(3){  
   width: 20%;
 }
-td:nth-child(4){
+td:nth-child(4){  
   width: 15%;
 }
-td:nth-child(5){
+td:nth-child(5){  
   width: 15%;
 }
 
@@ -1114,29 +1101,29 @@ td:nth-child(5){
   table{
     font-size: .8em;
   }
-  td:first-child, .table-heads th:first-child{
+  td:first-child, .table-heads th:first-child{  
   width: 30%;
   word-break: break-word;
   }
   th{
     padding: 0px 5px;
   }
-  .table-heads th:nth-child(2){
+  .table-heads th:nth-child(2){  
   width: 30%;
   }
-  .table-heads th:nth-child(3){
+  .table-heads th:nth-child(3){  
   width: 15%;
   }
-  .table-heads th:nth-child(4){
+  .table-heads th:nth-child(4){  
   width: 15%;
   }
-  td:nth-child(3){
+  td:nth-child(3){  
   width: 30%;
   }
-  td:nth-child(4){
+  td:nth-child(4){  
   width: 15%;
   }
-  td:nth-child(5){
+  td:nth-child(5){  
   width: 15%;
   }
   .social-link {
@@ -1188,11 +1175,4 @@ td:nth-child(5){
   opacity: 1;
   -webkit-transition: background-color 400ms ease, opacity 400ms ease, color 400ms ease;
   transition: background-color 400ms ease, opacity 400ms ease, color 400ms ease;
-}
-
-div.brand-img img
-{
-  max-height: 100%;
-  margin: 0 auto;
-  display: block;
 }

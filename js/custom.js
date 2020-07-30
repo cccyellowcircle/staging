@@ -29,7 +29,7 @@ function showInfo(data, tabletop) {
       , portrait = data[i].portrait || 'default.jpg'
       , category_full = data[i].category.replace(/\d{2}\.(.*)/, '$1')
       , category = (10 < category_full.length)
-        ? category_full.substr(0, 10)+"..."
+        ? category_full.substr(0, 15)+"..."
         : category_full
       , workshop = data[i].workshop
     ;
