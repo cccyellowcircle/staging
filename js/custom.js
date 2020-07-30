@@ -81,13 +81,13 @@ function showInfo(data, tabletop) {
       html += '<h1 class="brand-name">' + name + '</h1>';
       html += '<p>' + description + '</p>';
     if("" != fblink) {
-      html += '<a class="social-link" href="' + fblink + '" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
+      html += '<a class="social-link" href="' + fblink + '" target="_blank"><i class="fab fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
     }
     if("" != iglink) {
-      html += '<a class="social-link" href="' + iglink + '" target="_blank"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>';
+      html += '<a class="social-link" href="' + iglink + '" target="_blank"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>';
     }
     if("" != weblink) {
-      html += '<a class="social-link" href="' + weblink + '" target="_blank"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>';
+      html += '<a class="social-link" href="' + weblink + '" target="_blank"><i class="fas fa-link fa-lg" aria-hidden="true"></i></a>';
     }
     html += '</div>';
 
