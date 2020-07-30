@@ -5,13 +5,15 @@ function updateFilter()
   // current we only have 3 filter input
   var name = $('#filter-name').val()
     , category = $("#filter-category :selected").val()
-    , workshop = $('#filter-tick:checked').length;
+    , workshop = (0 < $('#filter-tick:checked').length)
+      ? true
+      : false
+    ;
 
-  console.log("filter name:"+name);
-  console.log("filter category:"+category);
-  console.log("filter workshop:"+workshop);
+  console.log("filter name:"+name+", category:"+category+", workshop:"+workshop);
 
   cards = $('.cards-wrapper');
+  show_count = 0;
   // for each card, we will check for the 3 inputs
   // cards info are store in data-*
   for (var i = 0; i < cards.length; i++)
@@ -43,7 +45,7 @@ function updateFilter()
 
     // ignore o case
     // if(0 == tick)
-    if(1 == workshop) {
+    if(workshop) {
       if("" != card.dataset.workshop) {
         is_show &= true;
       } else {
@@ -54,10 +56,12 @@ function updateFilter()
     // finally
     if(is_show) {
       $(card).show();
+      show_count++;
     } else {
       $(card).hide();
     }
   }
+  console.log("Final filter :"+show_count+"/"+cards.length);
 }
 
 

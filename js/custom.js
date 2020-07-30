@@ -26,7 +26,10 @@ function showInfo(data, tabletop) {
     // console.log(data[i]);
     var name = data[i].chiname
       , portrait = data[i].portrait || 'default.jpg'
-      , category = data[i].category.replace(/\d{2}\.(.*)/, '$1')
+      , category_full = data[i].category.replace(/\d{2}\.(.*)/, '$1')
+      , category = (10 < category_full.length)
+        ? category_full.substr(0, 10)+"..."
+        : category_full
       , workshop = data[i].workshop
     ;
 
@@ -34,7 +37,7 @@ function showInfo(data, tabletop) {
               ' data-artist_id="' + artist_id + '" ' +
               // if info are need to use in filter, store info as data-* here
               ' data-name="' + name + '" ' +
-              ' data-category="' + category + '" ' +
+              ' data-category="' + category_full + '" ' +
               ' data-workshop="' + workshop + '" ' +
               ' >' +
               '<div class="brand-img-wrap" style="background-image: url(./images/portrait/'+portrait+');">' +
@@ -338,10 +341,10 @@ var modal = new tingle.modal({
     closeLabel: "Close",
     cssClass: ['custom-class-1', 'custom-class-2'],
     onOpen: function() {
-        console.log('modal open');
+        // console.log('modal open');
     },
     onClose: function() {
-        console.log('modal closed');
+        // console.log('modal closed');
     },
     beforeClose: function() {
         // here's goes some logic
