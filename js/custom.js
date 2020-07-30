@@ -1,6 +1,8 @@
 /*tabletop.js* plugin Start*/
 
 var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1L6s0ZT079sjX6UaH3N3dpxN_odMY9JOh9zGigI-D7mE/pubhtml';
+var artists = [];
+
 
 function init() {
   Tabletop.init({
@@ -12,26 +14,22 @@ function init() {
 
 function showInfo(data, tabletop) {
   // console.log(data);
+  // save artists info for later use
+  artists = data;
   for (var i = 0; i < data.length; i++)
   {
+    // everything for listing page are update here
     var text = ''
+      , artist_id = i
       , name = data[i].chiname
-      , bg_title = encodeURI(data[i].engname)
-      , descript = data[i].descript
+      , portrait = data[i].portrait || 'default.jpg'
       , category = data[i].category.replace(/\d{2}\.(.*)/, '$1')
-      , fblink = data[i].fblink
-      , iglink = data[i].iglink
-      , weblink = data[i].weblink
     ;
 
     text += '<a href="#" class="cards-wrapper w-inline-block"' +
-              ' data-name="' + name + '" ' +
-              ' data-bg_title="' + bg_title + '" ' +
-              ' data-fblink="' + fblink + '" ' +
-              ' data-iglink="' + iglink + '" ' +
-              ' data-weblink="' + weblink + '" ' +
+              ' data-artist_id="' + artist_id + '" ' +
               ' >' +
-              '<div class="brand-img-wrap" style="background-image: url(http://placehold.it/1024x1024/e0e0e0/000000?text='+bg_title+');">' +
+              '<div class="brand-img-wrap" style="background-image: url(./images/portrait/'+portrait+');">' +
                 '<div class="tag">' +
                   '<div>'+category+'</div>' +
                 '</div>' +
@@ -47,17 +45,25 @@ function showInfo(data, tabletop) {
   $('div.brands-wrapper > a.cards-wrapper').on('click', function(){
     console.log($(this));
     var html = ""
-      , info = $(this)[0]
-      , name = info.dataset.name
-      , bg_title = info.dataset.bg_title
-      , descript = info.dataset.descript
-      , fblink = info.dataset.fblink
-      , iglink = info.dataset.iglink
-      , weblink = info.dataset.weblink
+      , artist_id = $(this)[0].dataset.artist_id
+      // load artist from artists array
+      // everything in lightbox are update here
+      , artist = artists[artist_id]
+      , name = artist.chiname
+      , portrait = artist.portrait || 'default.jpg'
+      // replace nextline to <br />
+      , description = artist.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
+      , fblink = artist.fblink
+      , iglink = artist.iglink
+      , weblink = artist.weblink
     ;
+    // console artist for debug use
+    // console.log(artist);
 
-    html += '<div class="brand-img" style="background-image: url(http://placehold.it/1024x1024/e0e0e0/000000?text='+bg_title+');"></div>';
-    html += '<div class="brand-detail">' + '<h1 class="brand-name">' + name + '</h1>' + '<p>' + descript + '</p>';
+    html += '<div class="brand-img"><img src="./images/portrait/'+portrait+'"></div>';
+    html += '<div class="brand-detail">';
+      html += '<h1 class="brand-name">' + name + '</h1>';
+      html += '<p>' + description + '</p>';
     if("" != fblink) {
       html += '<a class="social-link" href="' + fblink + '" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
     }
