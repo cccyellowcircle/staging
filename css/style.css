@@ -596,6 +596,7 @@ img {
   display: flex;
   width: 21%;
   margin: 1%;
+  text-decoration: none;
   padding: 10px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -1063,7 +1064,7 @@ td:nth-child(5){
 }
 
 .social-link{
-  padding-right: 0.5em;
+  margin-right: 0.5em;
 }
 
 .mbr-section{
@@ -1124,7 +1125,7 @@ td:nth-child(5){
   width: 15%;
   }
   .social-link {
-    padding-right: 0.5em;
+    margin-right: 0.5em;
   }
   }
 
