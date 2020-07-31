@@ -862,8 +862,8 @@ img {
 
 @media screen and (max-width: 479px) {
   .nav {
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
   .contact-container,.banner-container {
     padding-right: 5%;
@@ -877,7 +877,7 @@ img {
     line-height: 62px;
   }
   .logo-text {
-    margin-left: 0px;
+    margin-left: 5px;
   }
   .join-container {
     -webkit-box-orient: vertical;
