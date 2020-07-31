@@ -923,9 +923,6 @@ img {
     padding-right: 3%;
     padding-left: 3%;
   }
-  .brand-img{
-  height:300px;
-  }
 }
 
 /*Custom CSS*/
@@ -1127,7 +1124,7 @@ td:nth-child(5){
   width: 15%;
   }
   .social-link {
-    padding-right: 0.2em;
+    padding-right: 0.5em;
   }
   }
 

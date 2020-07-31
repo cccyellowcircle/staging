@@ -70,16 +70,19 @@ function showInfo(data, tabletop) {
       , portrait = artist.portrait || 'default.jpg'
       // replace nextline to <br />
       , description = artist.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
+      , category = artist.category.replace(/\d{2}\.(.*)/, '$1')
       , fblink = artist.fblink
       , iglink = artist.iglink
       , weblink = artist.weblink
+      , workshop = artist.workshop
     ;
 
     // build the lightbox html
     html += '<div class="brand-img"><img src="./images/portrait/'+portrait+'"></div>';
     html += '<div class="brand-detail">';
-      html += '<h1 class="brand-name">' + name + '</h1>';
-      html += '<p>' + description + '</p>';
+    html += '<h1 class="brand-name">' + name + '</h1>';
+    html += '<p>類別：' + category + '</p>';
+    html += '<p>' + description + '</p>';
     if("" != fblink) {
       html += '<a class="social-link" href="' + fblink + '" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>';
     }
@@ -88,6 +91,9 @@ function showInfo(data, tabletop) {
     }
     if("" != weblink) {
       html += '<a class="social-link" href="' + weblink + '" target="_blank"><i class="fa fa-link fa-lg" aria-hidden="true"></i></a>';
+    }
+    if("" != workshop) {
+      html += '<div class="workshop">工作坊</div>';
     }
     html += '</div>';
 
