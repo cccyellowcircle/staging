@@ -3,6 +3,7 @@ body {
   color: #1a1b1f;
   font-size: 16px;
   line-height: 28px;
+  user-select: none;
 }
 
 h1 {
