@@ -16,46 +16,53 @@ function showInfo(data, tabletop) {
   // console.log(data);
   // save artists info for later use
   artists = data;
-  for (var i = 0; i < data.length; i++)
-  {
+  // sync forEach
+  artists.forEach( (artist, artist_id) => {
     // everything for listing page are update here
-    var text = ''
-      , artist_id = i
-    ;
+    var text = '';
+
     // console this data for debug use
-    // console.log(data[i]);
-    var name_zh = data[i].chiname
-      , name_en = data[i].engname
-      , portrait = data[i].portrait || 'default.jpg'
-      , category_full = data[i].category.replace(/\d{2}\.(.*)/, '$1')
+    // console.log(artist);
+    var name_zh = artist.chiname
+      , name_en = artist.engname
+      , portrait = './images/portrait/' + (artist.portrait || 'default.jpg')
+      , category_full = artist.category.replace(/\d{2}\.(.*)/, '$1')
       , category = (10 < category_full.length)
         ? category_full.substr(0, 15)+"..."
         : category_full
-      , workshop = data[i].workshop
+      , workshop = artist.workshop
     ;
 
-    text += '<a href="#" class="cards-wrapper w-inline-block"' +
-              ' data-artist_id="' + artist_id + '" ' +
-              // if info are need to use in filter, store info as data-* here
-              ' data-name_zh="' + name_zh + '" ' +
-              ' data-name_en="' + name_en + '" ' +
-              ' data-category="' + category_full + '" ' +
-              ' data-workshop="' + workshop + '" ' +
-              ' >' +
-              '<div class="brand-img-wrap" style="background-image: url(./images/portrait/'+portrait+');">' +
-                '<div class="tag">' +
-                  '<div>'+category+'</div>' +
-                '</div>' +
-              '</div>' +
-              '<div class="brand-detail-wrapper">' +
-                '<div>'+name_zh+'</div>' +
-              '</div>' +
-            '</a>';
+    get_latest_profile(artist.iglink, artist.fblink, portrait)
+      .then(res => portrait = res)
+      .then( () => {
+        // console.log("data: %s; portrait: %s", artist_id, portrait);
 
-    $('.brands-wrapper').append(text);
-  }
+        text +=
+          '<a href="#" class="cards-wrapper w-inline-block"' +
+            ' data-artist_id="' + artist_id + '" ' +
+            // if info are need to use in filter, store info as data-* here
+            ' data-name_zh="' + name_zh + '" ' +
+            ' data-name_en="' + name_en + '" ' +
+            ' data-category="' + category_full + '" ' +
+            ' data-workshop="' + workshop + '" ' +
+            ' >' +
+            '<div class="brand-img-wrap" style="background-image: url('+portrait+');">' +
+              '<div class="tag">' +
+                '<div>'+category+'</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="brand-detail-wrapper">' +
+              '<div>'+name_zh+'</div>' +
+            '</div>' +
+          '</a>';
 
-  $('div.brands-wrapper > a.cards-wrapper').on('click', function(){
+        $('.brands-wrapper').append(text);
+      });
+  });
+}
+
+$('div.brands-wrapper').on('click', 'a.cards-wrapper', function() {
     // console.log($(this));
     var html = ""
       , artist_id = $(this)[0].dataset.artist_id
@@ -101,7 +108,6 @@ function showInfo(data, tabletop) {
     modal.setContent(html);
     modal.open();
   });
-}
 // window.addEventListener('DOMContentLoaded', init);
 
 
@@ -385,6 +391,45 @@ jQuery(document).ready(function() {
     jQuery('html, body').animate({scrollTop: 0}, duration);
     return false;
   })
-
-
 });
+
+
+async function get_latest_profile(ig_link, fb_link, default_img) {
+  let retun_img = '';
+
+  // try instagram
+  if ('' == retun_img && RegExp(/www.instagram.com/ig).test(ig_link)) {
+    url = ig_link.replace(/\/$/ig, '') + '?__a=1';
+
+    retun_img = await fetch(url, {})
+      .then( res => res.json() )
+      .then( data => data.graphql.user.profile_pic_url_hd )
+      .catch(err => '');
+  }
+
+  // try facebook
+  if ('' == retun_img && RegExp(/www.facebook.com/ig).test(fb_link)) {
+    url = fb_link
+      .replace(/www.facebook.com/ig, 'graph.facebook.com')
+      .replace(/\/$/ig, '')
+      + '/picture?width=1024&height=1024';
+
+    retun_img = await fetch(url)
+      .then(function (response) {
+        if (404 != response.status) {
+          return response.url;
+        } else {
+          return '';
+        }
+      })
+      .catch(err => '');
+  }
+
+  // if both fail use default
+  if ('' == retun_img) {
+    retun_img = default_img;
+  }
+
+  // console.log("Result: " + retun_img);
+  return retun_img;
+}
