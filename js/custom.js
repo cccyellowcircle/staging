@@ -60,13 +60,17 @@ function showInfo(data, tabletop) {
         $('.brands-wrapper').append(text);
       // });
 
-      get_latest_profile(artist_id, artist.iglink, artist.fblink, portrait)
+      get_latest_profile(artist_id, artist.iglink, artist.fblink, artist.portrait)
       .then(function(res) {
         // console.log("finish get_latest_profile");
         // console.log(res);
 
-        ele = $('a.cards-wrapper[data-artist_id="' + res.artist_id + '"] .brand-img-wrap')[0];
-        ele.style.backgroundImage = 'url("' + res.retun_img + '")'
+        if("" != res.retun_img) {
+          ele = $('a.cards-wrapper[data-artist_id="' + res.artist_id + '"] .brand-img-wrap')[0];
+          ele.style.backgroundImage = 'url("' + res.retun_img + '")';
+
+          artists[artist_id]["portrait"] = res.retun_img;
+        }
       });
 
   })
@@ -87,7 +91,7 @@ $('div.brands-wrapper').on('click', 'a.cards-wrapper', function() {
     // everything in lightbox are update here
     var
       name = artist.chiname
-      , portrait = artist.portrait || 'default.jpg'
+      , portrait = artist.portrait || './images/portrait/default.jpg'
       // replace nextline to <br />
       , description = artist.description.replace(/(?:\r\n|\r|\n)/g, '<br />')
       , category = artist.category.replace(/\d{2}\.(.*)/, '$1')
@@ -98,7 +102,7 @@ $('div.brands-wrapper').on('click', 'a.cards-wrapper', function() {
     ;
 
     // build the lightbox html
-    html += '<div class="brand-img"><img src="./images/portrait/'+portrait+'"></div>';
+    html += '<div class="brand-img"><img src="' + portrait + '"></div>';
     html += '<div class="brand-detail">';
     html += '<h1 class="brand-name">' + name + '</h1>';
     html += '<p>類別：' + category + '</p>';
@@ -439,7 +443,7 @@ async function get_latest_profile(artist_id, ig_link, fb_link, default_img) {
   }
 
   // if both fail use default
-  if ('' == retun_img) {
+  if ('' == retun_img && '' != default_img) {
     retun_img = default_img;
   }
 
