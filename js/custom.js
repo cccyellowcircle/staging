@@ -33,9 +33,9 @@ function showInfo(data, tabletop) {
       , workshop = artist.workshop
     ;
 
-    get_latest_profile(artist.iglink, artist.fblink, portrait)
-      .then(res => portrait = res)
-      .then( () => {
+    // get_latest_profile(artist.iglink, artist.fblink, portrait)
+    //   .then(res => portrait = res)
+    //   .then( () => {
         // console.log("data: %s; portrait: %s", artist_id, portrait);
 
         text +=
@@ -58,8 +58,21 @@ function showInfo(data, tabletop) {
           '</a>';
 
         $('.brands-wrapper').append(text);
+      // });
+
+      get_latest_profile(artist_id, artist.iglink, artist.fblink, portrait)
+      .then(function(res) {
+        // console.log("finish get_latest_profile");
+        // console.log(res);
+
+        ele = $('a.cards-wrapper[data-artist_id="' + res.artist_id + '"] .brand-img-wrap')[0];
+        ele.style.backgroundImage = 'url("' + res.retun_img + '")'
       });
-  });
+
+  })
+
+    console.log("finish main forloop");
+
 }
 
 $('div.brands-wrapper').on('click', 'a.cards-wrapper', function() {
@@ -394,7 +407,7 @@ jQuery(document).ready(function() {
 });
 
 
-async function get_latest_profile(ig_link, fb_link, default_img) {
+async function get_latest_profile(artist_id, ig_link, fb_link, default_img) {
   let retun_img = '';
 
   // try instagram
@@ -431,5 +444,9 @@ async function get_latest_profile(ig_link, fb_link, default_img) {
   }
 
   // console.log("Result: " + retun_img);
-  return retun_img;
+  // return retun_img;
+  return {
+    "retun_img": retun_img
+    , "artist_id": artist_id
+  };
 }
