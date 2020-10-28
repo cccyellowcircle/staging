@@ -341,7 +341,7 @@ img {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #32343a;
 }
 
 .join-container {
@@ -361,7 +361,31 @@ img {
   flex: 1;
 }
 
+.join-wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.hand-wrap {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
 .join-text {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fff;
   font-size: 30px;
   line-height: 40px;
   text-align: center;
@@ -374,7 +398,12 @@ img {
   display: flex;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 0px 45px;
+  padding: 17px 45px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -385,10 +414,10 @@ img {
   align-items: center;
   border: 3px solid #000;
   border-radius: 100px;
-  background-color: transparent;
+  background-color: #fff;
+  color: #333;
   -webkit-transition: background-color 400ms ease, opacity 400ms ease, color 400ms ease;
   transition: background-color 400ms ease, opacity 400ms ease, color 400ms ease;
-  color: #000;
   font-size: 20px;
   line-height: 20px;
   letter-spacing: 2px;
@@ -397,9 +426,11 @@ img {
 }
 
 .btn:hover {
+  border-color: #fff;
   background-color: #32343a;
   color: #fff;
 }
+
 
 .btn:active {
   background-color: #43464d;
@@ -1133,7 +1164,7 @@ td:nth-child(5){
   /*paper edge*/
 .paper-edge1 {
   width: 100%;
-  height: 100px;
+  height: 50px;
   background-image: url(../images/paper-up.png);
   background-position: 50% 0%;
   background-size: contain;
@@ -1142,7 +1173,7 @@ td:nth-child(5){
 
 .paper-edge2 {
   width: 100%;
-  height: 100px;
+  height: 50px;
   background-image: url(../images/paper-down.png);
   background-position: 50% 100%;
   background-size: contain;
