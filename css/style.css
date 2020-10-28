@@ -365,7 +365,7 @@ img {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
+  display: content;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
@@ -795,36 +795,48 @@ img {
     -ms-grid-rows: auto auto;
     grid-template-rows: auto auto;
   }
+
+  .hand-wrap{
+    width: 20%;
+  }
+
   .contact-container,.banner-container {
     padding-top: 50px;
     padding-bottom: 50px;
     text-align: center;
   }
+
   .banner-wrap {
     margin-right: 10%;
     margin-left: 10%;
   }
+
   .hero-text {
     margin: 20px 10%;
   }
+
   .header {
     font-size: 30px;
     line-height: 40px;
   }
+
   .header.p {
     font-size: 28px;
     line-height: 40px;
   }
+
   .sign {
     font-size: 14px;
     line-height: 25px;
   }
+
   .subtitle {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 15px;
     line-height: 25px;
   }
+
   .principles-container {
     padding: 100px 20px;
     -webkit-box-orient: vertical;
@@ -846,8 +858,7 @@ img {
     line-height: 30px;
   }
   .btn {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 17px 5px;
   }
   .contact-section {
     padding-right: 15px;
