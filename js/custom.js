@@ -1,19 +1,19 @@
-/*tabletop.js* plugin Start*/
-
-var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1L6s0ZT079sjX6UaH3N3dpxN_odMY9JOh9zGigI-D7mE/pubhtml';
-var artists = [];
-
+/*Papaparse.js* plugin Start*/
+var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmf1067WQtHrRU0G78U4ej4C7rI8UMmx4UzDxJfT-sBQs66hkIJZ6Fl7K583fmDlfhvhzV_ZYAH54R/pub?output=csv';
 
 function init() {
-  Tabletop.init({
-    key: publicSpreadsheetUrl,
-    callback: showInfo,
-    simpleSheet: true
-  });
-}
+      Papa.parse(publicSpreadsheetUrl, {
+        download: true,
+        header: true,
+        complete: showInfo
+      })
+    }
 
-function showInfo(data, tabletop) {
-  // console.log(data);
+
+
+function showInfo(results) {
+  /*console.log(data);*/
+  var data = results.data
   // save artists info for later use
   artists = data;
   // sync forEach
